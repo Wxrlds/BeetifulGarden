@@ -144,8 +144,8 @@ dependencies {
     runtimeOnly fg.deobf("maven.modrinth:jei:cNizrVlx")
 
     // Apple Skin to check Food values
-    // runtimeOnly fg.deobf("maven.modrinth:appleskin:LAwakjdi")
-    // compileOnly fg.deobf("squeek.appleskin:appleskin-forge:mc1.19.4-2.5.1:api")
+     runtimeOnly fg.deobf("maven.modrinth:appleskin:XdXDExVF")
+     compileOnly fg.deobf("squeek.appleskin:appleskin-forge:mc1.20.1-2.5.1:api")
 
     // Cucumber Library to view tags
     runtimeOnly fg.deobf("maven.modrinth:cucumber:lbNmT3WU")

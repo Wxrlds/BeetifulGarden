@@ -3,11 +3,13 @@ package eu.wxrlds.beetifulgarden;
 import eu.wxrlds.beetifulgarden.block.ModBlocks;
 import eu.wxrlds.beetifulgarden.config.BeetifulGardenCommonConfigs;
 import eu.wxrlds.beetifulgarden.item.ModItems;
+import eu.wxrlds.beetifulgarden.util.AppleSkinEventHandler;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -52,9 +54,9 @@ public class BeetifulGarden {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             // AppleSkin
-            // if (ModList.get().isLoaded("appleskin")) {
-            //     MinecraftForge.EVENT_BUS.register(new AppleSkinEventHandler());
-            // }
+             if (ModList.get().isLoaded("appleskin")) {
+                 MinecraftForge.EVENT_BUS.register(new AppleSkinEventHandler());
+             }
         }
     }
 
