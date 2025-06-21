@@ -26,7 +26,7 @@ public class Beetzza extends Item {
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         if (!BeetifulGardenCommonConfigs.BEETZZA_NEGATES_EFFECT.get().isEmpty()) {
             tooltip.add(Component.translatable("tooltip.beetifulgarden.beetzza_negates_alt").withStyle(ChatFormatting.GRAY));
-            Tooltips.addCuresTooltip(tooltip, 1.0F, BeetifulGardenCommonConfigs.BEETZZA_NEGATES_EFFECT.get());
+            Tooltips.addCuresTooltip(tooltip);
         }
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
@@ -42,7 +42,7 @@ public class Beetzza extends Item {
                         String[] parts = effectStrings[i].split(":");
                         String modID = parts[0];
                         String effectID = parts[1];
-                        effects[i] = new MobEffectInstance(ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.fromNamespaceAndPath(modID, effectID)));
+                        effects[i] = new MobEffectInstance(ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(modID, effectID)));
 
                         Player player = (Player) entity;
                         player.removeEffect(effects[i].getEffect());

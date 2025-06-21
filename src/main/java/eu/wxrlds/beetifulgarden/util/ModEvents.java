@@ -16,7 +16,7 @@ public class ModEvents {
     @SubscribeEvent
     public static void applyBeetifulEffectOnEaten(LivingEntityUseItemEvent.Finish event) {
         // Only execute on server
-        if (!event.getEntity().level.isClientSide()) {
+        if (!event.getEntity().level().isClientSide()) {
 
             Player player = (Player) event.getEntity();
 

@@ -93,14 +93,14 @@ public class Tooltips {
                 int durationInTicks = Integer.parseInt(parts[2]);
                 int amplifier = Integer.parseInt(parts[3]);
 
-                MobEffectInstance effect = new MobEffectInstance(ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.fromNamespaceAndPath(modID, effectID)), durationInTicks, amplifier);
+                MobEffectInstance effect = new MobEffectInstance(ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(modID, effectID)), durationInTicks, amplifier);
                 effectInstanceList.add(effect);
             }
         }
         return effectInstanceList;
     }
 
-    public static void addCuresTooltip(List<Component> tooltip, float value, String curesString) {
+    public static void addCuresTooltip(List<Component> tooltip) {
         if (Screen.hasAltDown()) {
             String[] effectStrings = BeetifulGardenCommonConfigs.BEETZZA_NEGATES_EFFECT.get().split("\\|");
             MobEffectInstance[] effects = new MobEffectInstance[effectStrings.length];
@@ -109,7 +109,7 @@ public class Tooltips {
                 String modID = parts[0];
                 String effectID = parts[1];
 
-                effects[i] = new MobEffectInstance(ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.fromNamespaceAndPath(modID, effectID)));
+                effects[i] = new MobEffectInstance(ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(modID, effectID)));
                 String translationKey = effects[i].getEffect().getDescriptionId();
                 String displayName = I18n.get(translationKey);
                 tooltip.add(Component.nullToEmpty(displayName).copy().withStyle(ChatFormatting.GRAY));

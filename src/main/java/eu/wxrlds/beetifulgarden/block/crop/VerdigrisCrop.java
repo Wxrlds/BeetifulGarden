@@ -17,7 +17,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class VerdigrisCrop extends BeetrootBlock implements IPlantable {
     private Block getPlantableOn() {
         String configValue = BeetifulGardenCommonConfigs.VERDIGRIS_PLANTABLE_ON.get();
-        return ForgeRegistries.BLOCKS.getValue(ResourceLocation.parse(configValue));
+        return ForgeRegistries.BLOCKS.getValue(new ResourceLocation(configValue));
     }
 
     public VerdigrisCrop(Properties properties) {

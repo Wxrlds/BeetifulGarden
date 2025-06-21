@@ -15,7 +15,7 @@ public class Effects {
                 String effectID = parts[1];
                 int duration = Integer.parseInt(parts[2]);
                 int amplifier = Integer.parseInt(parts[3]);
-                effectInstances[i] = new MobEffectInstance(ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.fromNamespaceAndPath(modID, effectID)), duration, amplifier);
+                effectInstances[i] = new MobEffectInstance(ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(modID, effectID)), duration, amplifier);
             }
             return effectInstances;
         }

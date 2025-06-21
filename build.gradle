@@ -141,25 +141,25 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     // JEI to view recipes
-    runtimeOnly fg.deobf("maven.modrinth:jei:wcfHQ0r1")
+    runtimeOnly fg.deobf("maven.modrinth:jei:cNizrVlx")
 
     // Apple Skin to check Food values
-    runtimeOnly fg.deobf("maven.modrinth:appleskin:LAwakjdi")
-    compileOnly fg.deobf("squeek.appleskin:appleskin-forge:mc1.19.4-2.5.1:api")
+    // runtimeOnly fg.deobf("maven.modrinth:appleskin:LAwakjdi")
+    // compileOnly fg.deobf("squeek.appleskin:appleskin-forge:mc1.19.4-2.5.1:api")
 
     // Cucumber Library to view tags
-     runtimeOnly fg.deobf("maven.modrinth:cucumber:UbCYUKkm")
+    runtimeOnly fg.deobf("maven.modrinth:cucumber:lbNmT3WU")
 
     // Botany Pots
-     runtimeOnly fg.deobf("maven.modrinth:bookshelf-lib:VpDTVinM")
-     runtimeOnly fg.deobf("maven.modrinth:botany-pots:N7LA5bds")
+    runtimeOnly fg.deobf("maven.modrinth:bookshelf-lib:mdfEVCj1")
+    runtimeOnly fg.deobf("maven.modrinth:botany-pots:Fps1P6MP")
 
     // Jade (What am I looking at)
-     runtimeOnly fg.deobf("maven.modrinth:jade:qIHOeHzS")
+    runtimeOnly fg.deobf("maven.modrinth:jade:9gf6jOO0")
 
     // Curios
-    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.19.4-5.1.5.4:api")
-    runtimeOnly fg.deobf("maven.modrinth:curios:NI17MAnS")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:5.14.1+1.20.1:api")
+    runtimeOnly fg.deobf("maven.modrinth:curios:IPQlZkz1")
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
