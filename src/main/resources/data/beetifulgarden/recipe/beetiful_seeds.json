@@ -1,6 +1,5 @@
 {
     "type": "minecraft:crafting_shaped",
-    "group": "sign",
     "pattern": [
         " E ",
         "DBD",
@@ -8,7 +7,7 @@
     ],
     "key": {
         "B": {
-            "tag": "forge:seeds/beetroot"
+            "tag": "c:seeds/beetroot"
         },
         "D": {
             "item": "minecraft:dragon_breath"
@@ -18,7 +17,7 @@
         }
     },
     "result": {
-        "item": "beetifulgarden:beetiful_seeds",
+        "id": "beetifulgarden:beetiful_seeds",
         "count": 1
     }
 }

@@ -7,11 +7,11 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 
-@Mod.EventBusSubscriber(modid = BeetifulGarden.MOD_ID)
+@EventBusSubscriber(modid = BeetifulGarden.MOD_ID)
 public class ModEvents {
     @SubscribeEvent
     public static void applyBeetifulEffectOnEaten(LivingEntityUseItemEvent.Finish event) {

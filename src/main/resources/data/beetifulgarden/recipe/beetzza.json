@@ -1,6 +1,5 @@
 {
     "type": "minecraft:crafting_shaped",
-    "group": "sign",
     "pattern": [
         "BNB",
         "BSB",
@@ -8,7 +7,7 @@
     ],
     "key": {
         "B": {
-            "tag": "forge:crops/beetiful"
+            "tag": "c:crops/beetiful"
         },
         "S": {
             "item": "minecraft:nether_star"
@@ -18,7 +17,7 @@
         }
     },
     "result": {
-        "item": "beetifulgarden:beetzza",
+        "id": "beetifulgarden:beetzza",
         "count": 1
     }
 }
