@@ -12,12 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Effects {
-    public static MobEffectInstance[] ConfigEffectsToEffectInstanceList(String effectString) {
+    public static List<MobEffectInstance> ConfigEffectsToEffectInstanceList(String effectString) {
+        List<MobEffectInstance> effectInstanceList = new ArrayList<>();
         if (effectString.isEmpty()) {
-            return new MobEffectInstance[0];
+            return effectInstanceList;
         }
         String[] effectStrings = effectString.split("\\|");
-        List<MobEffectInstance> effectList = new ArrayList<>();
         for (String effect : effectStrings) {
             String[] parts = effect.split(":");
 
@@ -29,10 +29,9 @@ public class Effects {
             ResourceLocation id = ResourceLocation.fromNamespaceAndPath(modID, effectID);
             ResourceKey<MobEffect> key = ResourceKey.create(Registries.MOB_EFFECT, id);
             Holder<MobEffect> holder = BuiltInRegistries.MOB_EFFECT.getHolder(key).get();
-
-            effectList.add(new MobEffectInstance(holder, duration, amplifier));
-
+            MobEffectInstance effects = new MobEffectInstance(holder, duration, amplifier);
+            effectInstanceList.add(effects);
         }
-        return effectList.toArray(new MobEffectInstance[0]);
+        return effectInstanceList;
     }
 }

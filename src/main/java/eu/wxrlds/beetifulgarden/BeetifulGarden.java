@@ -38,7 +38,6 @@ public class BeetifulGarden {
         ModBlocks.register(modEventBus);
         ModCreativeModTabs.register(modEventBus);
 
-
         // Register ourselves for server and other game events we are interested in
         NeoForge.EVENT_BUS.register(this);
     }

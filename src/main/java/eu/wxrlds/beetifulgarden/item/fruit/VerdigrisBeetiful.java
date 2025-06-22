@@ -1,7 +1,7 @@
 package eu.wxrlds.beetifulgarden.item.fruit;
 
 import eu.wxrlds.beetifulgarden.config.BeetifulGardenCommonConfigs;
-import eu.wxrlds.beetifulgarden.util.Tooltips;
+import eu.wxrlds.beetifulgarden.util.Effects;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
@@ -19,8 +19,8 @@ public class VerdigrisBeetiful extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        String effectsString = BeetifulGardenCommonConfigs.VERDIGRIS_EFFECTS.get();
-        List<MobEffectInstance> mob_effects = Tooltips.getMobEffects(effectsString);
-        PotionContents.addPotionTooltip(mob_effects, tooltipComponents::add, 1.0F, context.tickRate());
+        String effectString = BeetifulGardenCommonConfigs.VERDIGRIS_EFFECTS.get();
+        List<MobEffectInstance> mobEffects = Effects.ConfigEffectsToEffectInstanceList(effectString);
+        PotionContents.addPotionTooltip(mobEffects, tooltipComponents::add, 1.0F, context.tickRate());
     }
 }
