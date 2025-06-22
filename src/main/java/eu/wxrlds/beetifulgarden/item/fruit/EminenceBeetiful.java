@@ -1,7 +1,7 @@
 package eu.wxrlds.beetifulgarden.item.fruit;
 
 import eu.wxrlds.beetifulgarden.config.BeetifulGardenCommonConfigs;
-import eu.wxrlds.beetifulgarden.util.Tooltips;
+import eu.wxrlds.beetifulgarden.util.Effects;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
@@ -22,7 +22,7 @@ public class EminenceBeetiful extends Item {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         String effectString = BeetifulGardenCommonConfigs.EMINENCE_EFFECTS.get();
-        List<MobEffectInstance> mobEffects = Tooltips.getMobEffects(effectString);
+        List<MobEffectInstance> mobEffects = Effects.ConfigEffectsToEffectInstanceList(effectString);
         PotionUtils.addPotionTooltip(mobEffects, tooltip, 1.0F);
     }
 }

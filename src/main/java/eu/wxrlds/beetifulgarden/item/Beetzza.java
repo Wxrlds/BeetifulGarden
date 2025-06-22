@@ -36,7 +36,7 @@ public class Beetzza extends Item {
         if (!BeetifulGardenCommonConfigs.BEETZZA_NEGATES_EFFECT.get().isEmpty() && !world.isClientSide && entity instanceof Player) {
             String[] effectStrings = BeetifulGardenCommonConfigs.BEETZZA_NEGATES_EFFECT.get().split("\\|");
             for (String effectString : effectStrings) {
-               MobEffectInstance effects = new MobEffectInstance(ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(effectString)));
+                MobEffectInstance effects = new MobEffectInstance(ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(effectString)));
 
                 Player player = (Player) entity;
                 player.removeEffect(effects.getEffect());

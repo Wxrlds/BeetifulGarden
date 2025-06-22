@@ -54,9 +54,9 @@ public class BeetifulGarden {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             // AppleSkin
-             if (ModList.get().isLoaded("appleskin")) {
-                 MinecraftForge.EVENT_BUS.register(new AppleSkinEventHandler());
-             }
+            if (ModList.get().isLoaded("appleskin")) {
+                MinecraftForge.EVENT_BUS.register(new AppleSkinEventHandler());
+            }
         }
     }
 
