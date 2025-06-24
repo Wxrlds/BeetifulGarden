@@ -28,7 +28,7 @@ public class BeetifulGarden {
         IEventBus eventBus = context.getModEventBus();
 
         // Config file
-        context.registerConfig(ModConfig.Type.COMMON, BeetifulGardenCommonConfigs.SPEC);
+        context.registerConfig(ModConfig.Type.COMMON, BeetifulGardenCommonConfigs.SPEC, "beetifulgarden-common.toml");
 
         // Register items and blocks
         ModItems.register(eventBus);
