@@ -8,7 +8,11 @@ plugins {
 version = mod_version
 group = mod_group_id
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17) // Mojang ships Java 17 to end users, so your mod should target Java 1e.
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17) // Mojang ships Java 17 to end users, so your mod should target Java 17.
 
 repositories {
     // Everything Curseforge
