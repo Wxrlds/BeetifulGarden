@@ -62,7 +62,7 @@ public class BeetifulGarden {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         // do something when the server starts
+        // this is required or the game won't launch
         // LOGGER.info("HELLO from server starting");
     }
-
 }
