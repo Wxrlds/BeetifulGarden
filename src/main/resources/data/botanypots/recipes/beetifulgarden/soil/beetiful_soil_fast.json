@@ -7,13 +7,13 @@
         }
     ],
     "input": {
-        "item": "minecraft:ancient_debris"
+        "item": "minecraft:netherite_block"
     },
     "display": {
-        "block": "minecraft:ancient_debris"
+        "block": "minecraft:netherite_block"
     },
     "categories": [
-        "beetiful_soil"
+        "beetiful_soil_fast"
     ],
-    "growthModifier": 0.5
+    "growthModifier": 1.5
 }

@@ -17,10 +17,10 @@ public class ModCreativeModTabs {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, BeetifulGarden.MOD_ID);
 
-    public static final RegistryObject<CreativeModeTab> BEETIFULGARDEN_GROUP = CREATIVE_MODE_TABS.register("beetifulgarden_creative_mode_tab",
+    public static final RegistryObject<CreativeModeTab> BEETIFULGARDEN_GROUP = CREATIVE_MODE_TABS.register("beetifulgarden",
             () -> CreativeModeTab.builder()
                     .icon(() -> new ItemStack(ModItems.VELVET_BEETIFUL.get()))
-                    .title(Component.translatable("item_group.beetifulgarden_creative_mode_tab"))
+                    .title(Component.translatable("itemGroup.beetifulgarden"))
                     .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
                     .displayItems((parameters, output) -> {
                         output.accept(ModItems.CLOUDY_BEETIFUL.get());
