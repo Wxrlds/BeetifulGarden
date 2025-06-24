@@ -15,7 +15,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class PistachioCrop extends BeetrootBlock implements IPlantable {
     private Block getPlantableOn() {
         String configValue = BeetifulGardenCommonConfigs.PISTACHIO_PLANTABLE_ON.get();
-        return ForgeRegistries.BLOCKS.getValue(new ResourceLocation(configValue));
+        return ForgeRegistries.BLOCKS.getValue(ResourceLocation.parse(configValue));
     }
 
     public PistachioCrop(Properties properties) {

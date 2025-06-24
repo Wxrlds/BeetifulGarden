@@ -22,7 +22,7 @@ public class Effects {
             int duration = Integer.parseInt(parts[2]);
             int amplifier = Integer.parseInt(parts[3]);
 
-            MobEffectInstance effects = new MobEffectInstance(ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(modID, effectID)), duration, amplifier);
+            MobEffectInstance effects = new MobEffectInstance(ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.fromNamespaceAndPath(modID, effectID)), duration, amplifier);
             effectInstanceList.add(effects);
         }
         return effectInstanceList;

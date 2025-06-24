@@ -16,7 +16,7 @@ public class Tooltips {
         if (Screen.hasAltDown()) {
             String[] effectStrings = BeetifulGardenCommonConfigs.BEETZZA_NEGATES_EFFECT.get().split("\\|");
             for (String effectString : effectStrings) {
-                MobEffectInstance effects = new MobEffectInstance(ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(effectString)));
+                MobEffectInstance effects = new MobEffectInstance(ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.parse(effectString)));
 
                 String translationKey = effects.getEffect().getDescriptionId();
                 String displayName = I18n.get(translationKey);

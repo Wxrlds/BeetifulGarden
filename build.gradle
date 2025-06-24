@@ -141,18 +141,18 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     // JEI to view recipes
-    runtimeOnly fg.deobf("maven.modrinth:jei:cNizrVlx")
+    runtimeOnly fg.deobf("maven.modrinth:jei:4r3Kp7U7")
 
     // Apple Skin to check Food values
-    // runtimeOnly fg.deobf("maven.modrinth:appleskin:XdXDExVF")
+    runtimeOnly fg.deobf("maven.modrinth:appleskin:XdXDExVF")
     compileOnly fg.deobf("squeek.appleskin:appleskin-forge:mc1.20.1-2.5.1:api")
 
     // Cucumber Library to view tags
-    runtimeOnly fg.deobf("maven.modrinth:cucumber:lbNmT3WU")
+    runtimeOnly fg.deobf("maven.modrinth:cucumber:HlbDwsPk")
 
     // Botany Pots
-    runtimeOnly fg.deobf("maven.modrinth:bookshelf-lib:mdfEVCj1")
-    runtimeOnly fg.deobf("maven.modrinth:botany-pots:Fps1P6MP")
+    runtimeOnly fg.deobf("maven.modrinth:bookshelf-lib:tNwsir0K")
+    runtimeOnly fg.deobf("maven.modrinth:botany-pots:9bH71LWw")
 
     // Jade (What am I looking at)
     runtimeOnly fg.deobf("maven.modrinth:jade:9gf6jOO0")

@@ -6,11 +6,9 @@ import eu.wxrlds.beetifulgarden.item.ModItems;
 import eu.wxrlds.beetifulgarden.util.AppleSkinEventHandler;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -26,12 +24,11 @@ public class BeetifulGarden {
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public BeetifulGarden() {
-        // Register the setup method for modloading
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    public BeetifulGarden(FMLJavaModLoadingContext context) {
+        IEventBus eventBus = context.getModEventBus();
 
         // Config file
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BeetifulGardenCommonConfigs.SPEC, "beetifulgarden-common.toml");
+        context.registerConfig(ModConfig.Type.COMMON, BeetifulGardenCommonConfigs.SPEC);
 
         // Register items and blocks
         ModItems.register(eventBus);
@@ -59,12 +56,4 @@ public class BeetifulGarden {
             }
         }
     }
-
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
-        // do something when the server starts
-        // LOGGER.info("HELLO from server starting");
-    }
-
 }
