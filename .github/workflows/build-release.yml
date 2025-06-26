@@ -26,6 +26,8 @@ jobs:
         steps:
             -   name: Checkout repository
                 uses: actions/checkout@v4
+                with:
+                    fetch-depth: 0
 
             -   name: Validate Gradle Wrapper
                 uses: gradle/actions/wrapper-validation@v3
@@ -70,13 +72,22 @@ jobs:
                 run: |
                     REPO="github.com/${{ github.repository }}"
                     CURRENT_TAG="${GITHUB_REF#refs/tags/}"
-                    LAST_TAG=$(git for-each-ref --sort=-creatordate --format '%(refname:short)' refs/tags/alpha/v\* refs/tags/beta/v\* refs/tags/release/v\* | grep -v "$CURRENT_TAG" | head -n 1)
+                    echo "Current tag: $CURRENT_TAG"
+                    
+                    # All tags in current branch, without the current one
+                    TAG_LIST=$(git tag --merged HEAD --sort=-creatordate | grep -E '^alpha/v|^beta/v|^release/v' | grep -v "$CURRENT_TAG")
+                    echo "Tag list: $TAG_LIST"
+                    
+                    LAST_TAG=$(echo "$TAG_LIST" | sed -n 1p)
+                    echo "Last tag: $LAST_TAG"
+
                     if [ -z "$LAST_TAG" ]; then
                         # If there is no previous commit
                         GIT_LOG_RANGE=""
                     else
                         GIT_LOG_RANGE="$LAST_TAG..$CURRENT_TAG"
                     fi
+                    echo "Git log range: $GIT_LOG_RANGE"
                     
                     CHANGELOG=$(git log $GIT_LOG_RANGE --pretty=format:'[%s](https://'$REPO'/commit/%H) - %an<br>')
                     echo "changelog<<EOF" >> $GITHUB_OUTPUT
@@ -106,11 +117,11 @@ jobs:
 
                     changelog: |
                         ${{ steps.get_mc_version.outputs.mc_version }}-${{ steps.get_mod_version.outputs.mod_version }}
-                        
+
                         [Need a server? Just click on the Picture, use the code WXRLDS for 25% off of your first month and play with your friends!](https://bisecthosting.com/Wxrlds)
-                        
+
                         [![Bisect Hosting](https://www.bisecthosting.com/partners/custom-banners/7ac5059a-f314-47ac-8598-45d00bd20eb4.png)](https://bisecthosting.com/Wxrlds)
-                        
+
                         ${{ steps.get_changelog.outputs.changelog }}
 
                     dependencies: |
