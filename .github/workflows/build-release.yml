@@ -3,9 +3,10 @@
 # https://github.com/CaffeineMC/sodium/blob/dc7dc4c634316ac8b510d2dc8290079ebc462778/.github/workflows/build-release.yml
 # https://github.com/klikli-dev/occultism/blob/4e98f6753d61403d5efcb87368d63bd7c793d2e5/.github/workflows/build_and_publish.yaml
 # https://github.com/Kira-NT/mc-publish
+# https://wiki.fabricmc.net/tutorial:publishing_mods_using_github_actions
+
 name: build-release
 
-# https://wiki.fabricmc.net/tutorial:publishing_mods_using_github_actions
 on:
     push:
         tags:
@@ -25,6 +26,8 @@ jobs:
         steps:
             -   name: Checkout repository
                 uses: actions/checkout@v4
+                with:
+                    fetch-depth: 0
 
             -   name: Validate Gradle Wrapper
                 uses: gradle/actions/wrapper-validation@v3
@@ -69,15 +72,24 @@ jobs:
                 run: |
                     REPO="github.com/${{ github.repository }}"
                     CURRENT_TAG="${GITHUB_REF#refs/tags/}"
-                    LAST_TAG=$(git for-each-ref --sort=-creatordate --format '%(refname:short)' refs/tags/alpha/v\* refs/tags/beta/v\* refs/tags/release/v\* | grep -v "$CURRENT_TAG" | head -n 1)
-                    if [ -z "LAST_TAG" ]; then
+                    echo "Current tag: $CURRENT_TAG"
+                    
+                    # All tags in current branch, without the current one
+                    TAG_LIST=$(git tag --merged HEAD --sort=-creatordate | grep -E '^alpha/v|^beta/v|^release/v' | grep -v "$CURRENT_TAG")
+                    echo "Tag list: $TAG_LIST"
+                    
+                    LAST_TAG=$(echo "$TAG_LIST" | sed -n 1p)
+                    echo "Last tag: $LAST_TAG"
+
+                    if [ -z "$LAST_TAG" ]; then
                         # If there is no previous commit
                         GIT_LOG_RANGE=""
                     else
                         GIT_LOG_RANGE="$LAST_TAG..$CURRENT_TAG"
                     fi
+                    echo "Git log range: $GIT_LOG_RANGE"
                     
-                    CHANGELOG=$(git log $GIT_LOG_RANGE --pretty=format:'[%s](https://'$REPO'/commit/%H) - %an')
+                    CHANGELOG=$(git log $GIT_LOG_RANGE --pretty=format:'[%s](https://'$REPO'/commit/%H) - %an<br>')
                     echo "changelog<<EOF" >> $GITHUB_OUTPUT
                     echo "$CHANGELOG" >> $GITHUB_OUTPUT
                     echo "EOF" >> $GITHUB_OUTPUT
@@ -89,8 +101,6 @@ jobs:
             -   name: Upload to Modrinth & Curseforge
                 uses: Kir-Antipov/mc-publish@v3.3
                 with:
-                    # todo: add name field
-                    # https://authors.curseforge.com/#/projects/627559/files?displayedFilters=%7B%7D&filter=%7B%7D&order=DESC&page=1&perPage=10&sort=DateCreated
                     modrinth-id: RPbLPT3J
                     modrinth-token: ${{ secrets.MODRINTH_API_TOKEN }}
 
@@ -107,11 +117,11 @@ jobs:
 
                     changelog: |
                         ${{ steps.get_mc_version.outputs.mc_version }}-${{ steps.get_mod_version.outputs.mod_version }}
-                        
+
                         [Need a server? Just click on the Picture, use the code WXRLDS for 25% off of your first month and play with your friends!](https://bisecthosting.com/Wxrlds)
-                        
+
                         [![Bisect Hosting](https://www.bisecthosting.com/partners/custom-banners/7ac5059a-f314-47ac-8598-45d00bd20eb4.png)](https://bisecthosting.com/Wxrlds)
-                        
+
                         ${{ steps.get_changelog.outputs.changelog }}
 
                     dependencies: |

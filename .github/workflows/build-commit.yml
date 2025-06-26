@@ -3,7 +3,10 @@
 # Reference https://github.com/CaffeineMC/sodium/blob/dc7dc4c634316ac8b510d2dc8290079ebc462778/.github/workflows/build-commit.yml
 name: build-commit
 
-on: [ push ]
+on:
+    push:
+        branches:
+            - '**' # All branches so this does not get triggered, when pushing tags
 
 jobs:
     build:
@@ -33,7 +36,6 @@ jobs:
 
             -   name: Extract current branch name
                 id: get_branch
-                shell: bash
                 run: |
                     ref="${GITHUB_REF#refs/heads/}"
                     echo "branch=${ref////-}" >> $GITHUB_OUTPUT
