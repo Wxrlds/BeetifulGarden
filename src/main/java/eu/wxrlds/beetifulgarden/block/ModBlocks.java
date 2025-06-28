@@ -15,7 +15,7 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(BeetifulGarden.MOD_ID);
 
     public static Block ParseConfigPlantableBlock(String blockString) {
-        return BuiltInRegistries.BLOCK.get(ResourceLocation.parse(blockString));
+        return BuiltInRegistries.BLOCK.get(new ResourceLocation(blockString));
     }
 
     public static final DeferredBlock<Block> CLOUDY_CROP = BLOCKS.register("cloudy_crop",

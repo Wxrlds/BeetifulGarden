@@ -72,7 +72,7 @@ modId = "curios" #mandatory
 # Does this dependency have to exist - if not, ordering below must be specified
 type = "optional"
 # The version range of the dependency
-versionRange = "[5,)" #mandatory
+versionRange = "[7,)" #mandatory
 # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
 ordering = "AFTER"
 # Side this dependency is applied on - BOTH, CLIENT or SERVER
@@ -84,7 +84,7 @@ modId = "appleskin" #mandatory
 # Does this dependency have to exist - if not, ordering below must be specified
 type = "optional"
 # The version range of the dependency
-versionRange = "[1.20.1-2,)" #mandatory
+versionRange = "[1.20.4-2,)" #mandatory
 # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
 ordering = "NONE"
 # Side this dependency is applied on - BOTH, CLIENT or SERVER

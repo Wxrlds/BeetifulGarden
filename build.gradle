@@ -53,7 +53,7 @@ base {
     archivesName = mod_id
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21) // Mojang ships Java 21 to end users, so your mod should target Java 21.
+java.toolchain.languageVersion = JavaLanguageVersion.of(17) // Mojang ships Java 17 to end users, so your mod should target Java 17.
 
 neoForge {
     // Specify the version of NeoForge to use.
@@ -141,25 +141,25 @@ configurations {
 
 dependencies {
     // JEI to view recipes
-    localRuntime "maven.modrinth:jei:zRGLFYRx"
+    localRuntime "maven.modrinth:jei:ae5o0o24"
 
     // Apple Skin to check Food values
-    localRuntime "maven.modrinth:appleskin:kztxpjAA"
-    compileOnly "squeek.appleskin:appleskin-neoforge:mc1.21-3.0.7:api"
+    localRuntime "maven.modrinth:appleskin:FupqKtcB"
+    compileOnly "squeek.appleskin:appleskin-neoforge:mc1.20.4-2.5.1:api"
 
     // Cucumber Library to view tags
-    localRuntime "maven.modrinth:cucumber:zdO3mNYM"
+    // localRuntime "maven.modrinth:cucumber:zdO3mNYM"
 
     // Botany Pots
-    // localRuntime "maven.modrinth:bookshelf-lib:x53mpdkx"
-    // localRuntime "maven.modrinth:botany-pots:Fps1P6MP"
+    localRuntime "maven.modrinth:bookshelf-lib:WheiIvOy"
+    localRuntime "maven.modrinth:botany-pots:66uZFLBG"
 
     // Jade (What am I looking at)
-    localRuntime "maven.modrinth:jade:2P7THd8J"
+    localRuntime "maven.modrinth:jade:9rrZAORZ"
 
     // Curios
-    compileOnly "top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1:api"
-    localRuntime "maven.modrinth:curios:yohfFbgD"
+    compileOnly "top.theillusivec4.curios:curios-neoforge:7.4.3+1.20.4:api"
+    localRuntime "maven.modrinth:curios:LlDgDtwS"
 
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime

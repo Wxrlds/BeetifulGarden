@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.state.BlockState;
 public class VerdigrisCrop extends BeetrootBlock {
     private Block getPlantableOn() {
         String configValue = BeetifulGardenCommonConfigs.VERDIGRIS_PLANTABLE_ON.get();
-        return BuiltInRegistries.BLOCK.get(ResourceLocation.parse(configValue));
+        return BuiltInRegistries.BLOCK.get(new ResourceLocation(configValue));
     }
 
     public VerdigrisCrop(Properties properties) {

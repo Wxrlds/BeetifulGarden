@@ -8,10 +8,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 
-@EventBusSubscriber(modid = BeetifulGarden.MOD_ID)
+@Mod.EventBusSubscriber(modid = BeetifulGarden.MOD_ID)
 public class ModEvents {
     @SubscribeEvent
     public static void applyBeetifulEffectOnEaten(LivingEntityUseItemEvent.Finish event) {

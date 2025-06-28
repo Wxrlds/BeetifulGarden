@@ -7,9 +7,8 @@ import eu.wxrlds.beetifulgarden.util.AppleSkinEventHandler;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
-import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -26,17 +25,16 @@ public class BeetifulGarden {
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public BeetifulGarden(IEventBus modEventBus, ModContainer modContainer) {
-
+    public BeetifulGarden(IEventBus modEventBus) {
         modEventBus.addListener(this::commonSetup);
 
         // Config file
-        modContainer.registerConfig(ModConfig.Type.COMMON, BeetifulGardenCommonConfigs.SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BeetifulGardenCommonConfigs.SPEC, "beetifulgarden-common.toml");
 
         // Register items and blocks
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
-        ModCreativeModTabs.register(modEventBus);
+        ModCreativeModTabs.CREATIVE_MODE_TABS.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
         NeoForge.EVENT_BUS.register(this);
@@ -47,7 +45,7 @@ public class BeetifulGarden {
         LOGGER.info("HELLO FROM THE BEETIFUL WORLD");
     }
 
-    @EventBusSubscriber(modid = MOD_ID, value = Dist.CLIENT)
+    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {

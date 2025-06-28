@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.state.BlockState;
 public class OliveCrop extends BeetrootBlock {
     private Block getPlantableOn() {
         String configValue = BeetifulGardenCommonConfigs.OLIVE_PLANTABLE_ON.get();
-        return BuiltInRegistries.BLOCK.get(ResourceLocation.parse(configValue));
+        return BuiltInRegistries.BLOCK.get(new ResourceLocation(configValue));
     }
 
     public OliveCrop(Properties properties) {

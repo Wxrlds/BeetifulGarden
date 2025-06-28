@@ -7,7 +7,7 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 
 import java.util.List;
 
@@ -16,8 +16,7 @@ public class Tooltips {
         if (Screen.hasAltDown()) {
             String[] effectStrings = BeetifulGardenCommonConfigs.BEETZZA_NEGATES_EFFECT.get().split("\\|");
             for (String effectString : effectStrings) {
-                ResourceLocation effectRL = ResourceLocation.parse(effectString);
-                MobEffect effects = BuiltInRegistries.MOB_EFFECT.get(effectRL);
+                MobEffectInstance effects = new MobEffectInstance(BuiltInRegistries.MOB_EFFECT.get(new ResourceLocation(effectString)));
 
                 String translationKey = effects.getDescriptionId();
                 String displayName = I18n.get(translationKey);

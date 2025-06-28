@@ -2,10 +2,10 @@ package eu.wxrlds.beetifulgarden.util;
 
 import eu.wxrlds.beetifulgarden.config.BeetifulGardenCommonConfigs;
 import eu.wxrlds.beetifulgarden.item.ModItems;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.SubscribeEvent;
 import squeek.appleskin.api.event.FoodValuesEvent;
+import squeek.appleskin.api.food.FoodValues;
 
 public class AppleSkinEventHandler {
     @SubscribeEvent
@@ -49,6 +49,6 @@ public class AppleSkinEventHandler {
             // If the item is not one of the Beetifuls, then do not execute the other code
             return;
         }
-        event.modifiedFoodProperties = new FoodProperties.Builder().nutrition(nutritionValue).saturationModifier((float) saturationValue).build();
+        event.modifiedFoodValues = new FoodValues(nutritionValue, (float) saturationValue);
     }
 }

@@ -6,11 +6,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-@Mod(BeetifulGarden.MOD_ID)
+
 public class ModCreativeModTabs {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, BeetifulGarden.MOD_ID);
@@ -19,7 +18,7 @@ public class ModCreativeModTabs {
             () -> CreativeModeTab.builder()
                     .icon(() -> ModItems.VELVET_BEETIFUL.get().getDefaultInstance())
                     .title(Component.translatable("itemGroup.beetifulgarden"))
-                    .withTabsBefore(CreativeModeTabs.COMBAT)
+                    .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
                     .displayItems((parameters, output) -> {
                         output.accept(ModItems.CLOUDY_BEETIFUL.get());
                         output.accept(ModItems.EMINENCE_BEETIFUL.get());
