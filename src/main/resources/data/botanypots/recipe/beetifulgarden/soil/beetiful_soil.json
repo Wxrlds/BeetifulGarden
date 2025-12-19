@@ -10,10 +10,10 @@
         "item": "minecraft:ancient_debris"
     },
     "display": {
-        "block": "minecraft:ancient_debris"
+        "type": "botanypots:simple",
+        "block_state": {
+            "block": "minecraft:ancient_debris"
+        }
     },
-    "categories": [
-        "beetiful_soil"
-    ],
-    "growthModifier": 0.5
+    "growth_modifier": -0.25
 }

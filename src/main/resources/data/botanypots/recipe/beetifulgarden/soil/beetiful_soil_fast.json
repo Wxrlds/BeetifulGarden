@@ -10,10 +10,10 @@
         "item": "minecraft:netherite_block"
     },
     "display": {
-        "block": "minecraft:netherite_block"
+        "type": "botanypots:simple",
+        "block_state": {
+            "block": "minecraft:netherite_block"
+        }
     },
-    "categories": [
-        "beetiful_soil_fast"
-    ],
-    "growthModifier": 1.5
+    "growth_modifier": 1
 }

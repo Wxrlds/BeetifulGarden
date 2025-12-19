@@ -19,15 +19,13 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-// The value here should match an entry in the META-INF/neoforge.mods.toml file
+
 @Mod(BeetifulGarden.MOD_ID)
 public class BeetifulGarden {
     public static final String MOD_ID = "beetifulgarden";
-    // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
 
     public BeetifulGarden(IEventBus modEventBus, ModContainer modContainer) {
-
         modEventBus.addListener(this::commonSetup);
 
         // Config file
@@ -38,12 +36,10 @@ public class BeetifulGarden {
         ModBlocks.register(modEventBus);
         ModCreativeModTabs.register(modEventBus);
 
-        // Register ourselves for server and other game events we are interested in
         NeoForge.EVENT_BUS.register(this);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        // some preinit code
         LOGGER.info("HELLO FROM THE BEETIFUL WORLD");
     }
 
@@ -58,11 +54,8 @@ public class BeetifulGarden {
         }
     }
 
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        // do something when the server starts
         // this is required or the game won't launch
-        // LOGGER.info("HELLO from server starting");
     }
 }
