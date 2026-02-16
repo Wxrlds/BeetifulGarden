@@ -34,12 +34,11 @@ public class Beetzza extends Item {
 
     @Override
     public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
-        if (!BeetifulGardenCommonConfigs.BEETZZA_NEGATES_EFFECT.get().isEmpty() && !world.isClientSide && entity instanceof Player) {
+        if (!BeetifulGardenCommonConfigs.BEETZZA_NEGATES_EFFECT.get().isEmpty() && !world.isClientSide && entity instanceof Player player) {
             String[] effectStrings = BeetifulGardenCommonConfigs.BEETZZA_NEGATES_EFFECT.get().split("\\|");
             for (String effectString : effectStrings) {
                 MobEffectInstance effects = new MobEffectInstance(ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(effectString)));
 
-                Player player = (Player) entity;
                 player.removeEffect(effects.getEffect());
             }
         }
