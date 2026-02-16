@@ -1,9 +1,7 @@
 package eu.wxrlds.beetifulgarden.util;
 
 import eu.wxrlds.beetifulgarden.BeetifulGarden;
-import eu.wxrlds.beetifulgarden.config.BeetifulGardenCommonConfigs;
 import eu.wxrlds.beetifulgarden.item.BeetifulFruitItem;
-import eu.wxrlds.beetifulgarden.item.ModItems;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
@@ -26,11 +24,10 @@ public class ModEvents {
 
         Item item = event.getItem().getItem();
 
-        if (item instanceof BeetifulFruitItem) {
-            BeetifulFruitItem fruit = (BeetifulFruitItem) item;
+        if (item instanceof BeetifulFruitItem fruit) {
 
             // Apply effects
-            List<MobEffectInstance> effects = Effects.ConfigEffectsToEffectInstanceList(fruit.getEffectString());
+            List<MobEffectInstance> effects = EffectsParser.ConfigEffectsToEffectInstanceList(fruit.getEffectString());
 
             for (MobEffectInstance effect : effects) {
                 player.addEffect(new MobEffectInstance(effect));
