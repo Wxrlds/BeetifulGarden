@@ -2,7 +2,6 @@ package eu.wxrlds.beetifulgarden.item;
 
 import eu.wxrlds.beetifulgarden.BeetifulGarden;
 import eu.wxrlds.beetifulgarden.config.BeetifulGardenCommonConfigs;
-import eu.wxrlds.beetifulgarden.item.fruit.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.eventbus.api.IEventBus;

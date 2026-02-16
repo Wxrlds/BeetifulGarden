@@ -24,11 +24,10 @@ public class ModEvents {
 
         Item item = event.getItem().getItem();
 
-        if (item instanceof BeetifulFruitItem) {
-            BeetifulFruitItem fruit = (BeetifulFruitItem) item;
+        if (item instanceof BeetifulFruitItem fruit) {
 
             // Apply effects
-            List<MobEffectInstance> effects = Effects.ConfigEffectsToEffectInstanceList(fruit.getEffectString());
+            List<MobEffectInstance> effects = EffectsParser.ConfigEffectsToEffectInstanceList(fruit.getEffectString());
 
             for (MobEffectInstance effect : effects) {
                 player.addEffect(new MobEffectInstance(effect));
