@@ -45,6 +45,12 @@ public class BeetifulGarden {
         LOGGER.info("HELLO FROM THE BEETIFUL WORLD");
     }
 
+    @SubscribeEvent
+    public void onServerStarting(ServerStartingEvent event) {
+        // this is required or the game won't launch
+        // LOGGER.info("HELLO from server starting");
+    }
+
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
@@ -54,13 +60,5 @@ public class BeetifulGarden {
                 NeoForge.EVENT_BUS.register(new AppleSkinEventHandler());
             }
         }
-    }
-
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
-        // do something when the server starts
-        // this is required or the game won't launch
-        // LOGGER.info("HELLO from server starting");
     }
 }

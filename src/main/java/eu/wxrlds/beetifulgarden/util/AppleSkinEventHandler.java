@@ -11,8 +11,7 @@ public class AppleSkinEventHandler {
     public void onFoodValuesEvent(FoodValuesEvent event) {
         Item item = event.itemStack.getItem();
 
-        if (item instanceof BeetifulFruitItem) {
-            BeetifulFruitItem fruit = (BeetifulFruitItem) item;
+        if (item instanceof BeetifulFruitItem fruit) {
             event.modifiedFoodValues = new FoodValues(fruit.getNutrition(), fruit.getSaturation());
         }
     }
