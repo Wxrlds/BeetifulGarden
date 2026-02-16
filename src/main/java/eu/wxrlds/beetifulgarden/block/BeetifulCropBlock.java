@@ -1,6 +1,5 @@
-package eu.wxrlds.beetifulgarden.block.crop;
+package eu.wxrlds.beetifulgarden.block;
 
-import eu.wxrlds.beetifulgarden.config.BeetifulGardenCommonConfigs;
 import eu.wxrlds.beetifulgarden.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -12,19 +11,21 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class VelvetCrop extends BeetrootBlock implements IPlantable {
-    private Block getPlantableOn() {
-        String configValue = BeetifulGardenCommonConfigs.VELVET_PLANTABLE_ON.get();
-        return ForgeRegistries.BLOCKS.getValue(new ResourceLocation(configValue));
-    }
+import java.util.function.Supplier;
 
-    public VelvetCrop(Properties properties) {
+public class BeetifulCropBlock extends BeetrootBlock implements IPlantable {
+    private final Supplier<String> plantableOnConfig;
+
+    public BeetifulCropBlock(Properties properties, Supplier<String> plantableOnConfig) {
         super(properties);
+        this.plantableOnConfig = plantableOnConfig;
     }
 
     @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
-        return state.is(getPlantableOn());
+        String configValue = plantableOnConfig.get();
+        Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(configValue));
+        return state.is(block);
     }
 
     @Override
