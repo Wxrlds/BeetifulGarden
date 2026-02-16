@@ -15,10 +15,6 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, BeetifulGarden.MOD_ID);
 
-    public static Block ParseConfigPlantableBlock(String blockString) {
-        return ForgeRegistries.BLOCKS.getValue(ResourceLocation.parse(blockString));
-    }
-
     public static final RegistryObject<Block> CLOUDY_CROP = BLOCKS.register("cloudy_crop",
             () -> new BeetifulCropBlock(
                     BlockBehaviour.Properties.copy(Blocks.BEETROOTS),
@@ -79,6 +75,9 @@ public class ModBlocks {
                     BeetifulGardenCommonConfigs.VERDIGRIS_PLANTABLE_ON::get
             ));
 
+    public static Block ParseConfigPlantableBlock(String blockString) {
+        return ForgeRegistries.BLOCKS.getValue(ResourceLocation.parse(blockString));
+    }
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
