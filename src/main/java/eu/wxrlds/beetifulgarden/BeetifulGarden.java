@@ -53,6 +53,11 @@ public class BeetifulGarden {
         LOGGER.info("HELLO FROM THE BEETIFUL WORLD");
     }
 
+    private void enqueueIMC(final InterModEnqueueEvent event) {
+        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE,
+                () -> SlotTypePreset.CURIO.getMessageBuilder().build());
+    }
+
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
@@ -62,10 +67,5 @@ public class BeetifulGarden {
                 MinecraftForge.EVENT_BUS.register(new AppleSkinEventHandler());
             }
         }
-    }
-
-    private void enqueueIMC(final InterModEnqueueEvent event) {
-        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE,
-                () -> SlotTypePreset.CURIO.getMessageBuilder().build());
     }
 }
