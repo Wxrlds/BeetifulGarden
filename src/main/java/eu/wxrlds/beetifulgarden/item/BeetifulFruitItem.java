@@ -1,4 +1,4 @@
-package eu.wxrlds.beetifulgarden.item.fruit;
+package eu.wxrlds.beetifulgarden.item;
 
 import eu.wxrlds.beetifulgarden.config.BeetifulGardenCommonConfigs;
 import eu.wxrlds.beetifulgarden.util.Effects;
@@ -14,16 +14,36 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.function.Supplier;
 
-public class MarineBeetiful extends Item {
-    public MarineBeetiful(Properties properties) {
+public class BeetifulFruitItem extends Item {
+
+    private final Supplier<String> effectsConfig;
+    private final Supplier<Integer> nutritionConfig;
+    private final Supplier<Double> saturationConfig;
+
+    public BeetifulFruitItem(Properties properties, Supplier<String> effects, Supplier<Integer> nutrition, Supplier<Double> saturation) {
         super(properties.food(new Food.Builder().alwaysEat().build()));
+        this.effectsConfig = effects;
+        this.nutritionConfig = nutrition;
+        this.saturationConfig = saturation;
+    }
+
+    public String getEffectString() {
+        return effectsConfig.get();
+    }
+
+    public int getNutrition() {
+        return nutritionConfig.get();
+    }
+
+    public float getSaturation() {
+        return saturationConfig.get().floatValue();
     }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        String effectString = BeetifulGardenCommonConfigs.MARINE_EFFECTS.get();
-        List<EffectInstance> mobEffects = Effects.ConfigEffectsToEffectInstanceList(effectString);
+        List<EffectInstance> mobEffects = Effects.ConfigEffectsToEffectInstanceList(getEffectString());
 
         // Create a fake potion ItemStack to generate tooltip with custom effects.
         // The actual item can't store effects directly since we load the effect from the config file,
