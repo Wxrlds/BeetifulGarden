@@ -1,7 +1,6 @@
 package eu.wxrlds.beetifulgarden.item;
 
-import eu.wxrlds.beetifulgarden.config.BeetifulGardenCommonConfigs;
-import eu.wxrlds.beetifulgarden.util.Effects;
+import eu.wxrlds.beetifulgarden.util.EffectsParser;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
@@ -43,7 +42,7 @@ public class BeetifulFruitItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        List<EffectInstance> mobEffects = Effects.ConfigEffectsToEffectInstanceList(getEffectString());
+        List<EffectInstance> mobEffects = EffectsParser.ConfigEffectsToEffectInstanceList(getEffectString());
 
         // Create a fake potion ItemStack to generate tooltip with custom effects.
         // The actual item can't store effects directly since we load the effect from the config file,

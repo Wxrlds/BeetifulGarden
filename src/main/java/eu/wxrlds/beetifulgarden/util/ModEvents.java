@@ -29,7 +29,7 @@ public class ModEvents {
             PlayerEntity player = (PlayerEntity) event.getEntityLiving();
 
             // Apply effects
-            List<EffectInstance> effects = Effects.ConfigEffectsToEffectInstanceList(fruit.getEffectString());
+            List<EffectInstance> effects = EffectsParser.ConfigEffectsToEffectInstanceList(fruit.getEffectString());
 
             for (EffectInstance effect : effects) {
                 player.addEffect(new EffectInstance(effect));
