@@ -43,6 +43,11 @@ public class BeetifulGarden {
         LOGGER.info("HELLO FROM THE BEETIFUL WORLD");
     }
 
+    @SubscribeEvent
+    public void onServerStarting(ServerStartingEvent event) {
+        // this is required or the game won't launch
+    }
+
     @EventBusSubscriber(modid = MOD_ID, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
@@ -52,10 +57,5 @@ public class BeetifulGarden {
                 NeoForge.EVENT_BUS.register(new AppleSkinEventHandler());
             }
         }
-    }
-
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
-        // this is required or the game won't launch
     }
 }

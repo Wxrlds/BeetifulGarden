@@ -1,6 +1,6 @@
 package eu.wxrlds.beetifulgarden.item;
 
-import eu.wxrlds.beetifulgarden.util.Effects;
+import eu.wxrlds.beetifulgarden.util.EffectsParser;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
@@ -38,7 +38,7 @@ public class BeetifulFruitItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        List<MobEffectInstance> mobEffects = Effects.ConfigEffectsToEffectInstanceList(getEffectString());
+        List<MobEffectInstance> mobEffects = EffectsParser.ConfigEffectsToEffectInstanceList(getEffectString());
         PotionContents.addPotionTooltip(mobEffects, tooltipComponents::add, 1.0F, context.tickRate());
     }
 }
