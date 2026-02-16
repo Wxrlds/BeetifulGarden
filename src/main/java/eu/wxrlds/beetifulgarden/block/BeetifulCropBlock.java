@@ -1,6 +1,7 @@
 package eu.wxrlds.beetifulgarden.block;
 
 import eu.wxrlds.beetifulgarden.item.ModItems;
+import eu.wxrlds.beetifulgarden.util.PlantableOnParser;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.BlockGetter;
@@ -23,9 +24,7 @@ public class BeetifulCropBlock extends BeetrootBlock implements IPlantable {
 
     @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
-        String configValue = plantableOnConfig.get();
-        Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(configValue));
-        return state.is(block);
+        return PlantableOnParser.isAllowed(state.getBlock(), plantableOnConfig.get());
     }
 
     @Override
