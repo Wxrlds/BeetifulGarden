@@ -33,7 +33,8 @@ public class BeetifulGarden {
 
         // Register items and blocks
         ModItems.register(modEventBus);
-        ModBlocks.register(modEventBus);
+        ModBlocks.BLOCKS.register(modEventBus);
+        ModBlocks.registerBlocks();
         ModCreativeModTabs.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
