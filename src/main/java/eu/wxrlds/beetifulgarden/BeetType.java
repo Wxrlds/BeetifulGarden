@@ -1,53 +1,60 @@
 package eu.wxrlds.beetifulgarden;
 
 import eu.wxrlds.beetifulgarden.config.BeetifulGardenCommonConfigs;
-import net.minecraftforge.common.ForgeConfigSpec;
-
-import java.util.function.Supplier;
 
 public enum BeetType {
-    CLOUDY("cloudy", BeetifulGardenCommonConfigs.CLOUDY_NUTRITION, BeetifulGardenCommonConfigs.CLOUDY_SATURATION, BeetifulGardenCommonConfigs.CLOUDY_EFFECTS, BeetifulGardenCommonConfigs.CLOUDY_PLANTABLE_ON),
-    EMINENCE("eminence", BeetifulGardenCommonConfigs.EMINENCE_NUTRITION, BeetifulGardenCommonConfigs.EMINENCE_SATURATION, BeetifulGardenCommonConfigs.EMINENCE_EFFECTS, BeetifulGardenCommonConfigs.EMINENCE_PLANTABLE_ON),
-    MARINE("marine", BeetifulGardenCommonConfigs.MARINE_NUTRITION, BeetifulGardenCommonConfigs.MARINE_SATURATION, BeetifulGardenCommonConfigs.MARINE_EFFECTS, BeetifulGardenCommonConfigs.MARINE_PLANTABLE_ON),
-    OLIVE("olive", BeetifulGardenCommonConfigs.OLIVE_NUTRITION, BeetifulGardenCommonConfigs.OLIVE_SATURATION, BeetifulGardenCommonConfigs.OLIVE_EFFECTS, BeetifulGardenCommonConfigs.OLIVE_PLANTABLE_ON),
-    PISTACHIO("pistachio", BeetifulGardenCommonConfigs.PISTACHIO_NUTRITION, BeetifulGardenCommonConfigs.PISTACHIO_SATURATION, BeetifulGardenCommonConfigs.PISTACHIO_EFFECTS, BeetifulGardenCommonConfigs.PISTACHIO_PLANTABLE_ON),
-    PIXIE("pixie", BeetifulGardenCommonConfigs.PIXIE_NUTRITION, BeetifulGardenCommonConfigs.PIXIE_SATURATION, BeetifulGardenCommonConfigs.PIXIE_EFFECTS, BeetifulGardenCommonConfigs.PIXIE_PLANTABLE_ON),
-    SIENNA("sienna", BeetifulGardenCommonConfigs.SIENNA_NUTRITION, BeetifulGardenCommonConfigs.SIENNA_SATURATION, BeetifulGardenCommonConfigs.SIENNA_EFFECTS, BeetifulGardenCommonConfigs.SIENNA_PLANTABLE_ON),
-    VELVET("velvet", BeetifulGardenCommonConfigs.VELVET_NUTRITION, BeetifulGardenCommonConfigs.VELVET_SATURATION, BeetifulGardenCommonConfigs.VELVET_EFFECTS, BeetifulGardenCommonConfigs.VELVET_PLANTABLE_ON),
-    VERDANT("verdant", BeetifulGardenCommonConfigs.VERDANT_NUTRITION, BeetifulGardenCommonConfigs.VERDANT_SATURATION, BeetifulGardenCommonConfigs.VERDANT_EFFECTS, BeetifulGardenCommonConfigs.VERDANT_PLANTABLE_ON),
-    VERDIGRIS("verdigris", BeetifulGardenCommonConfigs.VERDIGRIS_NUTRITION, BeetifulGardenCommonConfigs.VERDIGRIS_SATURATION, BeetifulGardenCommonConfigs.VERDIGRIS_EFFECTS, BeetifulGardenCommonConfigs.VERDIGRIS_PLANTABLE_ON);
+    CLOUDY("cloudy", "minecraft:speed:6000:1|minecraft:weakness:1800:0", "minecraft:blue_ice"),
+    EMINENCE("eminence", "minecraft:fire_resistance:6000:0|minecraft:poison:1800:0", "minecraft:crying_obsidian"),
+    MARINE("marine", "minecraft:resistance:6000:3|minecraft:blindness:300:0|minecraft:slowness:1200:1|minecraft:bad_omen:20:4", "minecraft:blue_glazed_terracotta"),
+    OLIVE("olive", "minecraft:saturation:6000:0|minecraft:instant_damage:20:0", "minecraft:hay_block"),
+    PISTACHIO("pistachio", "minecraft:strength:6000:2|minecraft:slowness:1200:3", "minecraft:wet_sponge"),
+    PIXIE("pixie", "minecraft:regeneration:6000:0|minecraft:hunger:600:5", "minecraft:melon"),
+    SIENNA("sienna", "minecraft:slow_falling:6000:0|minecraft:slowness:600:1", "minecraft:honeycomb_block"),
+    VELVET("velvet", "minecraft:night_vision:6000:0|minecraft:invisibility:4500:0|minecraft:blindness:600:0", "minecraft:bubble_coral_block"),
+    VERDANT("verdant", "minecraft:jump_boost:6000:2|minecraft:nausea:1200:1", "minecraft:slime_block"),
+    VERDIGRIS("verdigris", "minecraft:water_breathing:6000:0|minecraft:mining_fatigue:3000:0", "minecraft:sea_lantern");
 
     private final String name;
-    private final Supplier<Integer> nutrition;
-    private final Supplier<Double> saturation;
-    private final Supplier<String> effects;
-    private final Supplier<String> plantableOn;
+    private final String baseEffects;
+    private final String basePlantableOn;
 
-    BeetType(String name, ForgeConfigSpec.ConfigValue<Integer> nutrition, ForgeConfigSpec.ConfigValue<Double> saturation, ForgeConfigSpec.ConfigValue<String> effects, ForgeConfigSpec.ConfigValue<String> plantableOn) {
+    BeetType(String name, String baseEffects, String basePlantableOn) {
         this.name = name;
-        this.nutrition = nutrition::get;
-        this.saturation = saturation::get;
-        this.effects = effects::get;
-        this.plantableOn = plantableOn::get;
+        this.baseEffects = baseEffects;
+        this.basePlantableOn = basePlantableOn;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getNutrition() {
-        return nutrition.get();
+    // These are used for the config builder
+    public String getBaseEffects() {
+        return baseEffects;
     }
 
-    public float getSaturation() {
-        return saturation.get().floatValue();
+    public String getBasePlantableOn() {
+        return basePlantableOn;
     }
 
+    // These are actually used when reading the config
     public String getEffects() {
-        return effects.get();
+        return getConfig().effects.get();
     }
 
     public String getPlantableOn() {
-        return plantableOn.get();
+        return getConfig().plantableOn.get();
+    }
+
+    public int getNutrition() {
+        return getConfig().nutrition.get();
+    }
+
+    public float getSaturation() {
+        return getConfig().saturation.get().floatValue();
+    }
+
+    private BeetifulGardenCommonConfigs.BeetConfig getConfig() {
+        return BeetifulGardenCommonConfigs.BEET_CONFIGS.get(this);
     }
 }
