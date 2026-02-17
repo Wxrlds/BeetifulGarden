@@ -32,7 +32,8 @@ public class BeetifulGarden {
 
         // Register items and blocks
         ModItems.register(eventBus);
-        ModBlocks.register(eventBus);
+        ModBlocks.BLOCKS.register(eventBus);
+        ModBlocks.registerBlocks();
         ModCreativeModTabs.register(eventBus);
 
         eventBus.addListener(this::setup);
