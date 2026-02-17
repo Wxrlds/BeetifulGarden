@@ -58,16 +58,9 @@ public class BeetifulGarden {
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         // Configure rendering of the crops
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.CLOUDY_CROP.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.EMINENCE_CROP.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.MARINE_CROP.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.OLIVE_CROP.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.PISTACHIO_CROP.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.PIXIE_CROP.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.SIENNA_CROP.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.VELVET_CROP.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.VERDANT_CROP.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.VERDIGRIS_CROP.get(), RenderType.cutout());
+        ModBlocks.CROP_BLOCKS.values().forEach(registryObject -> {
+            ItemBlockRenderTypes.setRenderLayer(registryObject.get(), RenderType.cutout());
+        });
 
         // AppleSkin
         if (ModList.get().isLoaded("appleskin")) {
@@ -76,7 +69,6 @@ public class BeetifulGarden {
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
-        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE,
-                () -> SlotTypePreset.CURIO.getMessageBuilder().build());
+        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.CURIO.getMessageBuilder().build());
     }
 }
