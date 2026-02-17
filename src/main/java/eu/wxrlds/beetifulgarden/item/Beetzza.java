@@ -1,19 +1,18 @@
 package eu.wxrlds.beetifulgarden.item;
 
-import eu.wxrlds.beetifulgarden.config.BeetifulGardenCommonConfigs;
-import eu.wxrlds.beetifulgarden.util.Tooltips;
+import eu.wxrlds.beetifulgarden.util.EffectsParser;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -25,21 +24,28 @@ public class Beetzza extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        if (!BeetifulGardenCommonConfigs.BEETZZA_NEGATES_EFFECT.get().isEmpty()) {
+        List<MobEffect> negated = EffectsParser.getNegatedEffects();
+        if (!negated.isEmpty()) {
             tooltip.add(new TranslatableComponent("tooltip.beetifulgarden.beetzza_negates_alt").withStyle(ChatFormatting.GRAY));
-            Tooltips.addCuresTooltip(tooltip);
+            if (Screen.hasAltDown()) {
+                for (MobEffect effect : negated) {
+                    tooltip.add(new TextComponent("- ")
+                            .append(effect.getDisplayName())
+                            .withStyle(ChatFormatting.GRAY));
+                }
+            }
         }
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 
     @Override
     public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
-        if (!BeetifulGardenCommonConfigs.BEETZZA_NEGATES_EFFECT.get().isEmpty() && !world.isClientSide && entity instanceof Player player) {
-            String[] effectStrings = BeetifulGardenCommonConfigs.BEETZZA_NEGATES_EFFECT.get().split("\\|");
-            for (String effectString : effectStrings) {
-                MobEffectInstance effects = new MobEffectInstance(ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.parse(effectString)));
-
-                player.removeEffect(effects.getEffect());
+        if (!world.isClientSide && entity instanceof Player player) {
+            List<MobEffect> toRemove = EffectsParser.getNegatedEffects();
+            for (MobEffect effect : toRemove) {
+                if (player.hasEffect(effect)) {
+                    player.removeEffect(effect);
+                }
             }
         }
         super.inventoryTick(stack, world, entity, slot, selected);
