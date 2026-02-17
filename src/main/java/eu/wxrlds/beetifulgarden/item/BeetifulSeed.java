@@ -2,7 +2,6 @@ package eu.wxrlds.beetifulgarden.item;
 
 import eu.wxrlds.beetifulgarden.BeetType;
 import eu.wxrlds.beetifulgarden.block.ModBlocks;
-import eu.wxrlds.beetifulgarden.config.BeetifulGardenCommonConfigs;
 import eu.wxrlds.beetifulgarden.util.PlantableOnParser;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
