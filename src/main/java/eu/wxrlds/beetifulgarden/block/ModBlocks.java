@@ -19,7 +19,7 @@ public class ModBlocks {
 
     public static final Map<BeetType, RegistryObject<Block>> CROP_BLOCKS = new EnumMap<>(BeetType.class);
 
-    static {
+    public static void registerBlocks() {
         for (BeetType type : BeetType.values()) {
             CROP_BLOCKS.put(type, BLOCKS.register(type.getName() + "_crop",
                     () -> new BeetifulCropBlock(AbstractBlock.Properties.copy(Blocks.BEETROOTS), type)));
