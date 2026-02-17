@@ -36,7 +36,6 @@ public class BeetifulFruitItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        List<MobEffectInstance> mobEffects = EffectsParser.ConfigEffectsToEffectInstanceList(getEffectString());
-        PotionUtils.addPotionTooltip(mobEffects, tooltip, 1.0F, worldIn == null ? 20.0F : worldIn.tickRateManager().tickrate());
+        PotionUtils.addPotionTooltip(type.getParsedEffects(), tooltip, 1.0F, worldIn == null ? 20.0F : worldIn.tickRateManager().tickrate());
     }
 }
