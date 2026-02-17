@@ -1,6 +1,10 @@
 package eu.wxrlds.beetifulgarden;
 
 import eu.wxrlds.beetifulgarden.config.BeetifulGardenCommonConfigs;
+import eu.wxrlds.beetifulgarden.util.EffectsParser;
+import net.minecraft.potion.EffectInstance;
+
+import java.util.List;
 
 public enum BeetType {
     CLOUDY("cloudy", "minecraft:speed:6000:1|minecraft:weakness:1800:0", "minecraft:blue_ice"),
@@ -17,6 +21,7 @@ public enum BeetType {
     private final String name;
     private final String baseEffects;
     private final String basePlantableOn;
+    private List<EffectInstance> cachedEffectInstances = null;
 
     BeetType(String name, String baseEffects, String basePlantableOn) {
         this.name = name;
@@ -52,6 +57,14 @@ public enum BeetType {
 
     public float getSaturation() {
         return getConfig().saturation.get().floatValue();
+    }
+
+    // Used by the tooltip
+    public List<EffectInstance> getParsedEffects() {
+        if (cachedEffectInstances == null) {
+            cachedEffectInstances = EffectsParser.ConfigEffectsToEffectInstanceList(getEffects());
+        }
+        return cachedEffectInstances;
     }
 
     private BeetifulGardenCommonConfigs.BeetConfig getConfig() {
