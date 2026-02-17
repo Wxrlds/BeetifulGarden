@@ -38,7 +38,8 @@ public class BeetifulGarden {
 
         // Register items and blocks
         ModItems.register(eventBus);
-        ModBlocks.register(eventBus);
+        ModBlocks.BLOCKS.register(eventBus);
+        ModBlocks.registerBlocks();
 
         eventBus.addListener(this::setup);
         // Register the enqueueIMC method for modloading
