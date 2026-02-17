@@ -58,16 +58,9 @@ public class BeetifulGarden {
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         // Configure rendering of the crops
-        RenderTypeLookup.setRenderLayer(ModBlocks.CLOUDY_CROP.get(), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.EMINENCE_CROP.get(), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.MARINE_CROP.get(), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.OLIVE_CROP.get(), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.PISTACHIO_CROP.get(), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.PIXIE_CROP.get(), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.SIENNA_CROP.get(), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.VELVET_CROP.get(), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.VERDANT_CROP.get(), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(ModBlocks.VERDIGRIS_CROP.get(), RenderType.cutout());
+        ModBlocks.CROP_BLOCKS.values().forEach(registryObject -> {
+            RenderTypeLookup.setRenderLayer(registryObject.get(), RenderType.cutout());
+        });
 
         // AppleSkin
         if (ModList.get().isLoaded("appleskin")) {

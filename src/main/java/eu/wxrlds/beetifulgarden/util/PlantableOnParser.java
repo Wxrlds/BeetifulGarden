@@ -31,7 +31,7 @@ public class PlantableOnParser {
                 continue;
             }
 
-            // Check if the effect actually exists in the game
+            // Check if the block actually exists in the game
             if (ForgeRegistries.BLOCKS.containsKey(rl)) {
                 blocks.add(ForgeRegistries.BLOCKS.getValue(rl));
             } else {
