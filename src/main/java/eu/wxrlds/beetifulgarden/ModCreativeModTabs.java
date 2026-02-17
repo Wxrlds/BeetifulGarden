@@ -18,7 +18,7 @@ public class ModCreativeModTabs {
     public static void registerCreativeModeTabs(CreativeModeTabEvent.Register event) {
         BEETIFULGARDEN_GROUP = event.registerCreativeModeTab(
                 ResourceLocation.fromNamespaceAndPath(BeetifulGarden.MOD_ID, "beetifulgarden"),
-                builder -> builder.icon(() -> new ItemStack(ModItems.VELVET_BEETIFUL.get()))
+                builder -> builder.icon(() -> new ItemStack(ModItems.BEETIFUL_FRUITS.get(BeetType.VELVET).get()))
                         .title(Component.translatable("itemGroup.beetifulgarden")));
     }
 }

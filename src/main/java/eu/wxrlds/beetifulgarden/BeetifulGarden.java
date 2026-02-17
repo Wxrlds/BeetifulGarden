@@ -53,16 +53,9 @@ public class BeetifulGarden {
 
     private void addCreative(CreativeModeTabEvent.BuildContents event) {
         if (event.getTab() == ModCreativeModTabs.BEETIFULGARDEN_GROUP) {
-            event.accept(ModItems.CLOUDY_BEETIFUL);
-            event.accept(ModItems.EMINENCE_BEETIFUL);
-            event.accept(ModItems.MARINE_BEETIFUL);
-            event.accept(ModItems.OLIVE_BEETIFUL);
-            event.accept(ModItems.PISTACHIO_BEETIFUL);
-            event.accept(ModItems.PIXIE_BEETIFUL);
-            event.accept(ModItems.SIENNA_BEETIFUL);
-            event.accept(ModItems.VELVET_BEETIFUL);
-            event.accept(ModItems.VERDANT_BEETIFUL);
-            event.accept(ModItems.VERDIGRIS_BEETIFUL);
+            ModItems.BEETIFUL_FRUITS.values().forEach(registryObject -> {
+                event.accept(registryObject.get());
+            });
             event.accept(ModItems.BEETIFUL_SEEDS);
             event.accept(ModItems.BEETZZA);
         }
