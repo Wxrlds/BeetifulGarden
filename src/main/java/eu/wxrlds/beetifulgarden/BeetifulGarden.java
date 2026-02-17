@@ -33,7 +33,8 @@ public class BeetifulGarden {
 
         // Register items and blocks
         ModItems.register(modEventBus);
-        ModBlocks.register(modEventBus);
+        ModBlocks.BLOCKS.register(modEventBus);
+        ModBlocks.registerBlocks();
         ModCreativeModTabs.CREATIVE_MODE_TABS.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
