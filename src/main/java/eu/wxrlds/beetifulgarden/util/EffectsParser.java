@@ -1,6 +1,7 @@
 package eu.wxrlds.beetifulgarden.util;
 
 import com.mojang.logging.LogUtils;
+import eu.wxrlds.beetifulgarden.config.BeetifulGardenCommonConfigs;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -17,6 +18,8 @@ import java.util.Optional;
 
 public class EffectsParser {
     private static final Logger LOGGER = LogUtils.getLogger();
+    private static String lastNegatedConfig = null;
+    private static List<Holder<MobEffect>> cachedNegatedEffects = null;
 
     public static List<MobEffectInstance> ConfigEffectsToEffectInstanceList(String effectString) {
         // Allow empty string
@@ -63,5 +66,42 @@ public class EffectsParser {
         }
 
         return effectInstanceList;
+    }
+
+    public static List<Holder<MobEffect>> getNegatedEffects() {
+        String currentConfig = BeetifulGardenCommonConfigs.BEETZZA_NEGATES_EFFECT.get();
+
+        // The mod loads the config, before initialising it. This causes it to read the default value.
+        if (lastNegatedConfig != null && lastNegatedConfig.equals(currentConfig)) {
+            return cachedNegatedEffects;
+        }
+
+        lastNegatedConfig = currentConfig;
+        cachedNegatedEffects = new ArrayList<>();
+
+        if (currentConfig == null || currentConfig.trim().isEmpty()) {
+            return cachedNegatedEffects;
+        }
+
+        String[] entries = currentConfig.split("\\|");
+
+        for (String entry : entries) {
+            entry = entry.trim();
+            if (entry.isEmpty()) continue;
+            ResourceLocation rl = ResourceLocation.tryParse(entry);
+            if (rl == null) {
+                LOGGER.error("Invalid ResourceLocation in Beetzza negate config: {}", entry);
+                continue;
+            }
+
+            Optional<Holder.Reference<MobEffect>> holder = BuiltInRegistries.MOB_EFFECT.getHolder(rl);
+
+            if (holder.isPresent()) {
+                cachedNegatedEffects.add(holder.get());
+            } else {
+                LOGGER.warn("Potion effect not found for Beetzza config: {}", entry);
+            }
+        }
+        return cachedNegatedEffects;
     }
 }
