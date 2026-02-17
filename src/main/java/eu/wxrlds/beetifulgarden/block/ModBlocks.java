@@ -2,8 +2,6 @@ package eu.wxrlds.beetifulgarden.block;
 
 import eu.wxrlds.beetifulgarden.BeetType;
 import eu.wxrlds.beetifulgarden.BeetifulGarden;
-import eu.wxrlds.beetifulgarden.config.BeetifulGardenCommonConfigs;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
