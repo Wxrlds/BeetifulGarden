@@ -4,6 +4,7 @@ import eu.wxrlds.beetifulgarden.BeetType;
 import eu.wxrlds.beetifulgarden.block.ModBlocks;
 import eu.wxrlds.beetifulgarden.util.PlantableOnParser;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
@@ -26,6 +27,9 @@ public class BeetifulSeed extends Item {
     public InteractionResult useOn(UseOnContext context) {
         Level world = context.getLevel();
         BlockPos clickPos = context.getClickedPos();
+        if (context.getClickedFace() != Direction.UP) {
+            return InteractionResult.PASS;
+        }
         BlockPos spawnPos = clickPos.above();
         Block blockBelow = world.getBlockState(clickPos).getBlock();
 
