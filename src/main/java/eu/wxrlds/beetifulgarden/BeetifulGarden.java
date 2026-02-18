@@ -32,9 +32,10 @@ public class BeetifulGarden {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BeetifulGardenCommonConfigs.SPEC, "beetifulgarden-common.toml");
 
         // Register items and blocks
-        ModItems.register(modEventBus);
+        ModItems.ITEMS.register(modEventBus);
+        ModItems.register();
         ModBlocks.BLOCKS.register(modEventBus);
-        ModBlocks.registerBlocks();
+        ModBlocks.register();
         ModCreativeModTabs.CREATIVE_MODE_TABS.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in

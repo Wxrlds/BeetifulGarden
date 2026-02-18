@@ -4,7 +4,6 @@ import eu.wxrlds.beetifulgarden.BeetType;
 import eu.wxrlds.beetifulgarden.BeetifulGarden;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
-import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -26,14 +25,10 @@ public class ModItems {
                             .stacksTo(1)
                             .rarity(Rarity.EPIC)));
 
-    static {
+    public static void register() {
         for (BeetType type : BeetType.values()) {
             BEETIFUL_FRUITS.put(type, ITEMS.register(type.getName() + "_beetiful",
                     () -> new BeetifulFruitItem(new Item.Properties(), type)));
         }
-    }
-
-    public static void register(IEventBus eventBus) {
-        ITEMS.register(eventBus);
     }
 }
