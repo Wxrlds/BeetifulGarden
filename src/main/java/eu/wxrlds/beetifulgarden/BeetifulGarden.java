@@ -23,10 +23,8 @@ public class BeetifulGarden {
     public BeetifulGarden(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
 
-        // Config file
         modContainer.registerConfig(ModConfig.Type.COMMON, BeetifulGardenCommonConfigs.SPEC);
 
-        // Register items and blocks
         ModItems.ITEMS.register(modEventBus);
         ModItems.register();
         ModBlocks.BLOCKS.register(modEventBus);
