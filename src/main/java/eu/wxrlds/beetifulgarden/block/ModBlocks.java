@@ -17,15 +17,11 @@ public class ModBlocks {
 
     public static final Map<BeetType, DeferredBlock<Block>> CROP_BLOCKS = new EnumMap<>(BeetType.class);
 
-    public static void registerBlocks() {
+    public static void register() {
         for (BeetType type : BeetType.values()) {
             CROP_BLOCKS.put(type, BLOCKS.register(type.getName() + "_crop",
                     () -> new BeetifulCropBlock(
                             BlockBehaviour.Properties.ofFullCopy(Blocks.BEETROOTS), type)));
         }
-    }
-
-    public static void register(IEventBus eventBus) {
-        BLOCKS.register(eventBus);
     }
 }

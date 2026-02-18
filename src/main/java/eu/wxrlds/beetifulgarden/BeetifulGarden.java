@@ -32,9 +32,10 @@ public class BeetifulGarden {
         modContainer.registerConfig(ModConfig.Type.COMMON, BeetifulGardenCommonConfigs.SPEC);
 
         // Register items and blocks
-        ModItems.register(modEventBus);
+        ModItems.ITEMS.register(modEventBus);
+        ModItems.register();
         ModBlocks.BLOCKS.register(modEventBus);
-        ModBlocks.registerBlocks();
+        ModBlocks.register();
         ModCreativeModTabs.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);

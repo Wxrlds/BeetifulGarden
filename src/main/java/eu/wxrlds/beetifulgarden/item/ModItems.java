@@ -26,14 +26,10 @@ public class ModItems {
                             .stacksTo(1)
                             .rarity(Rarity.EPIC)));
 
-    static {
+    public static void register() {
         for (BeetType type : BeetType.values()) {
             BEETIFUL_FRUITS.put(type, ITEMS.register(type.getName() + "_beetiful",
                     () -> new BeetifulFruitItem(new Item.Properties(), type)));
         }
-    }
-
-    public static void register(IEventBus eventBus) {
-        ITEMS.register(eventBus);
     }
 }
