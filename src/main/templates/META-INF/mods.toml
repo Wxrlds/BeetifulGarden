@@ -35,11 +35,3 @@ type = "optional"
 versionRange = "[7,)"
 ordering = "AFTER"
 side = "BOTH"
-
-# Apple Skin
-[[dependencies.${ mod_id }]]
-modId = "appleskin"
-type = "optional"
-versionRange = "[1.20.4-2,)"
-ordering = "NONE"
-side = "BOTH"
