@@ -5,7 +5,6 @@ import eu.wxrlds.beetifulgarden.BeetifulGarden;
 import eu.wxrlds.beetifulgarden.ModGroup;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -29,14 +28,10 @@ public class ModItems {
                             .stacksTo(1)
                             .rarity(Rarity.EPIC)));
 
-    static {
+    public static void register() {
         for (BeetType type : BeetType.values()) {
             BEETIFUL_FRUITS.put(type, ITEMS.register(type.getName() + "_beetiful",
                     () -> new BeetifulFruitItem(new Item.Properties().tab(ModGroup.BEETIFULGARDEN_GROUP), type)));
         }
-    }
-
-    public static void register(IEventBus eventBus) {
-        ITEMS.register(eventBus);
     }
 }
