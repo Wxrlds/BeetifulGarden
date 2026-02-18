@@ -41,10 +41,6 @@ repositories {
     maven {
         url = "https://maven.theillusivec4.top"
     }
-    // AppleSkin
-    maven {
-        url "https://maven.ryanliptak.com/"
-    }
 }
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
@@ -85,13 +81,12 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    // Apple Skin
-    runtimeOnly fg.deobf("maven.modrinth:appleskin:1ZaL0ACn")
-    compileOnly fg.deobf("squeek.appleskin:appleskin-forge:mc1.18.2-2.5.1:api")
-
     // Curios
     runtimeOnly fg.deobf("maven.modrinth:curios:sVuCrC2E")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.2-5.0.9.2:api")
+
+    // Apple Skin
+    runtimeOnly fg.deobf("maven.modrinth:appleskin:1ZaL0ACn")
 
     // JEI
     runtimeOnly fg.deobf("maven.modrinth:jei:k3W3h9cO")
