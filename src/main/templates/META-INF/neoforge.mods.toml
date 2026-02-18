@@ -1,7 +1,7 @@
 modLoader = "javafml"
 loaderVersion = "${loader_version_range}"
 license = "${mod_license}"
-issueTrackerURL = "https://github.com/Wxrlds/BeetifulGarden" #optional
+issueTrackerURL = "https://github.com/Wxrlds/BeetifulGarden"
 
 # Beetiful Garden
 [[mods]]
@@ -28,6 +28,7 @@ versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
 
+# Curios
 [[dependencies.${ mod_id }]]
 modId = "curios"
 type = "optional"
@@ -35,6 +36,7 @@ versionRange = "[9,)"
 ordering = "AFTER"
 side = "BOTH"
 
+# Apple Skin
 [[dependencies.${ mod_id }]]
 modId = "appleskin"
 type = "optional"

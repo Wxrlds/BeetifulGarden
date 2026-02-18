@@ -94,26 +94,29 @@ configurations {
 
 
 dependencies {
-    // JEI (to view recipes)
-    localRuntime "maven.modrinth:jei:NMhqixRu"
+    // Apple Skin
+    localRuntime "maven.modrinth:appleskin:8X2x5cPC"
+    compileOnly "squeek.appleskin:appleskin-neoforge:mc1.21-3.0.8:api"
 
-    // Apple Skin (to check Food values)
-    localRuntime "maven.modrinth:appleskin:kztxpjAA"
-    compileOnly "squeek.appleskin:appleskin-neoforge:mc1.21-3.0.7:api"
+    // Curios
+    localRuntime "maven.modrinth:curios:yohfFbgD"
+    compileOnly "top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1:api"
+
+    // JEI
+    localRuntime "maven.modrinth:jei:YAcQ6elZ"
+
+    // Cucumber
+    localRuntime "maven.modrinth:cucumber:RmimPYNS"
 
     // Botany Pots
     localRuntime "maven.modrinth:botany-pots:DZU8FqKS"
     // Bookshelf dependency
-    localRuntime "maven.modrinth:bookshelf-lib:vQ3DXKc6"
+    localRuntime "maven.modrinth:bookshelf-lib:1sdJl7J1"
     // Prickle dependency
     localRuntime "maven.modrinth:prickle:EE1FHDyD"
 
     // TOP (The One Probe)
     localRuntime "maven.modrinth:the-one-probe:4bbMy0Mh"
-
-    // Curios
-    localRuntime "maven.modrinth:curios:yohfFbgD"
-    compileOnly "top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1:api"
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
