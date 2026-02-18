@@ -127,4 +127,3 @@ jobs:
                     dependencies: |
                         botany-pots(optional)
                         curios(optional)
-                        appleskin(optional)
