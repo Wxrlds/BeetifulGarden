@@ -21,6 +21,7 @@ public enum BeetType {
     private final String name;
     private final String baseEffects;
     private final String basePlantableOn;
+    private String lastEffectString = null;
     private List<MobEffectInstance> cachedEffectInstances = null;
 
     BeetType(String name, String baseEffects, String basePlantableOn) {
@@ -61,8 +62,10 @@ public enum BeetType {
 
     // Used by the tooltip
     public List<MobEffectInstance> getParsedEffects() {
-        if (cachedEffectInstances == null) {
-            cachedEffectInstances = EffectsParser.ConfigEffectsToEffectInstanceList(getEffects());
+        String currentEffects = getEffects();
+        if (cachedEffectInstances == null || !currentEffects.equals(lastEffectString)) {
+            this.lastEffectString = currentEffects;
+            this.cachedEffectInstances = EffectsParser.ConfigEffectsToEffectInstanceList(currentEffects);
         }
         return cachedEffectInstances;
     }
