@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -35,6 +36,18 @@ public class BeetifulFruitItem extends Item {
         PotionContents.addPotionTooltip(type.getParsedEffects(), tooltipComponents::add, 1.0F, context.tickRate());
     }
 
+    // We need to define this here, instead of the Food Builder above
+    // because our config file is not loaded by the time the Food Builder above runs
+    // causing the saturation values to not be configurable
+    @Override
+    public @Nullable FoodProperties getFoodProperties(ItemStack stack, @Nullable LivingEntity entity) {
+        return new FoodProperties.Builder()
+                .nutrition(getNutrition())
+                .saturationModifier(getSaturation())
+                .alwaysEdible()
+                .build();
+    }
+
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
         if (!world.isClientSide && entity instanceof Player player) {
@@ -42,8 +55,6 @@ public class BeetifulFruitItem extends Item {
             for (MobEffectInstance effect : type.getParsedEffects()) {
                 player.addEffect(new MobEffectInstance(effect));
             }
-
-            player.getFoodData().eat(getNutrition(), getSaturation());
         }
         return super.finishUsingItem(stack, world, entity);
     }

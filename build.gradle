@@ -31,10 +31,6 @@ repositories {
     maven {
         url = "https://maven.theillusivec4.top"
     }
-    // AppleSkin
-    maven {
-        url "https://maven.ryanliptak.com/"
-    }
 }
 
 base {
@@ -94,13 +90,12 @@ configurations {
 
 
 dependencies {
-    // Apple Skin
-    localRuntime "maven.modrinth:appleskin:8X2x5cPC"
-    compileOnly "squeek.appleskin:appleskin-neoforge:mc1.21-3.0.8:api"
-
     // Curios
     localRuntime "maven.modrinth:curios:yohfFbgD"
     compileOnly "top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1:api"
+
+    // Apple Skin
+    localRuntime "maven.modrinth:appleskin:8X2x5cPC"
 
     // JEI
     localRuntime "maven.modrinth:jei:YAcQ6elZ"
