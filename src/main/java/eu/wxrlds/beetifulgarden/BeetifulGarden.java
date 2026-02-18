@@ -38,9 +38,10 @@ public class BeetifulGarden {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BeetifulGardenCommonConfigs.SPEC, "beetifulgarden-common.toml");
 
         // Register items and blocks
-        ModItems.register(eventBus);
+        ModItems.ITEMS.register(eventBus);
+        ModItems.register();
         ModBlocks.BLOCKS.register(eventBus);
-        ModBlocks.registerBlocks();
+        ModBlocks.register();
 
         eventBus.addListener(this::setup);
         // Register the enqueueIMC method for modloading
