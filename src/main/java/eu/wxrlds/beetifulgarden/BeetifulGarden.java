@@ -17,31 +17,24 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(BeetifulGarden.MOD_ID)
 public class BeetifulGarden {
     public static final String MOD_ID = "beetifulgarden";
-    // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
 
     public BeetifulGarden(FMLJavaModLoadingContext context) {
-        // Register the setup method for modloading
         IEventBus eventBus = context.getModEventBus();
 
-        // Config file
         context.registerConfig(ModConfig.Type.COMMON, BeetifulGardenCommonConfigs.SPEC, "beetifulgarden-common.toml");
 
-        // Register items and blocks
         ModItems.ITEMS.register(eventBus);
         ModItems.register();
         ModBlocks.BLOCKS.register(eventBus);
         ModBlocks.register();
 
         eventBus.addListener(this::setup);
-        // Register the enqueueIMC method for modloading
         eventBus.addListener(this::enqueueIMC);
 
-        // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
 
