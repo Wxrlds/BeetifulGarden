@@ -3,8 +3,6 @@ package eu.wxrlds.beetifulgarden.item;
 import eu.wxrlds.beetifulgarden.BeetType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -20,7 +18,7 @@ public class BeetifulFruitItem extends Item {
     private final BeetType type;
 
     public BeetifulFruitItem(Properties properties, BeetType type) {
-        super(properties.food(new FoodProperties.Builder().alwaysEat().build()));
+        super(properties.food(new FoodProperties.Builder().build()));
         this.type = type;
     }
 
@@ -49,21 +47,13 @@ public class BeetifulFruitItem extends Item {
     // causing the saturation values to not be configurable
     @Override
     public FoodProperties getFoodProperties() {
-        return new FoodProperties.Builder()
+        FoodProperties.Builder builder = new FoodProperties.Builder()
                 .nutrition(getNutrition())
                 .saturationMod(getSaturation())
-                .alwaysEat()
-                .build();
-    }
-
-    @Override
-    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
-        if (!world.isClientSide && entity instanceof Player player) {
-
-            for (MobEffectInstance effect : type.getParsedEffects()) {
-                player.addEffect(new MobEffectInstance(effect));
-            }
+                .alwaysEat();
+        for (MobEffectInstance effect : type.getParsedEffects()) {
+            builder.effect(() -> effect, 1.0f);
         }
-        return super.finishUsingItem(stack, world, entity);
+        return builder.build();
     }
 }
