@@ -3,13 +3,11 @@ package eu.wxrlds.beetifulgarden;
 import eu.wxrlds.beetifulgarden.block.ModBlocks;
 import eu.wxrlds.beetifulgarden.config.BeetifulGardenCommonConfigs;
 import eu.wxrlds.beetifulgarden.item.ModItems;
-import eu.wxrlds.beetifulgarden.util.AppleSkinEventHandler;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.InterModComms;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -63,11 +61,6 @@ public class BeetifulGarden {
         ModBlocks.CROP_BLOCKS.values().forEach(registryObject -> {
             RenderTypeLookup.setRenderLayer(registryObject.get(), RenderType.cutout());
         });
-
-        // AppleSkin
-        if (ModList.get().isLoaded("appleskin")) {
-            MinecraftForge.EVENT_BUS.register(new AppleSkinEventHandler());
-        }
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

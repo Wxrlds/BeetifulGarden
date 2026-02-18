@@ -45,6 +45,18 @@ public class BeetifulFruitItem extends Item {
         PotionUtils.addPotionTooltip(fakeStack, tooltip, 1.0F);
     }
 
+    // We need to define this here, instead of the Food Builder above
+    // because our config file is not loaded by the time the Food Builder above runs
+    // causing the saturation values to not be configurable
+    @Override
+    public Food getFoodProperties() {
+        return new Food.Builder()
+                .nutrition(getNutrition())
+                .saturationMod(getSaturation())
+                .alwaysEat()
+                .build();
+    }
+
     @Override
     public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity entity) {
         if (!world.isClientSide && entity instanceof PlayerEntity) {
@@ -53,8 +65,6 @@ public class BeetifulFruitItem extends Item {
             for (EffectInstance effect : type.getParsedEffects()) {
                 player.addEffect(new EffectInstance(effect));
             }
-
-            player.getFoodData().eat(getNutrition(), getSaturation());
         }
         return super.finishUsingItem(stack, world, entity);
     }
